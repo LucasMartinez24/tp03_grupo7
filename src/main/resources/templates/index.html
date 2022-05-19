@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#" class="logo"><img th:src="@{/img/Logo.png}" alt=""></a>
+      <div class="nave">
+        <ul>
+            <li class="list active">
+              <a href="#"><span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="text">Home</span></a>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="cart-outline"></ion-icon>
+                </span>
+                <span class="text">Products</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="help-outline"></ion-icon>
+                </span>
+                <span class="text">Formulario</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="school-outline"></ion-icon>
+                </span>
+                <span class="text">List</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="people-circle-outline"></ion-icon>
+                </span>
+                <span class="text">Contact</span>
+              </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <script th:src="@{js/main.js}"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
