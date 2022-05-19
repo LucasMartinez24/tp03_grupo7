@@ -5,13 +5,15 @@
   box-sizing: border-box;
   font-family: 'Amatic SC', cursive;
 }
+body{
+  background: #53599A;
+}
 nav{
   margin: 40px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px 50px;
-  background-color: #222327;
 }
 nav .logo{
   align-items: center;
@@ -61,14 +63,15 @@ nav .logo img{
   font-size: 1.5em;
   text-align: center;
   transition: 0.5s;
-  color: #D81E5B;
+  color: #050505;
+  
 }
 .nave ul li.active a .icon{
   transform: translateY(-32px);
 }
 .nave ul li a .text{
   position: absolute;
-  color: #D81E5B;
+  color: #050505;
   font-weight: 400;
   font-size: 1em;
   letter-spacing: 0.05em;
@@ -85,9 +88,9 @@ nav .logo img{
   top: -50%;
   width: 70px;
   height: 70px;
-  background: #29fd53;
+  background: #FF6B6B;
   border-radius: 50%;
-  border: 6px solid #222327;
+  border: 6px solid #53599A;
   transition: 0.5s;
 }
 .indicator::before{
@@ -99,7 +102,7 @@ nav .logo img{
   height: 20px;
   background: transparent;
   border-top-right-radius: 20px;
-  box-shadow: 1px -10px 0 0 #222327;
+  box-shadow: 1px -10px 0 0 #53599A;
 }
 .indicator::after{
   content: '';
@@ -110,7 +113,7 @@ nav .logo img{
   height: 20px;
   background: transparent;
   border-top-left-radius: 20px;
-  box-shadow: -1px -10px 0 0 #222327;
+  box-shadow: -1px -10px 0 0 #53599A;
 }
 .nave ul li:nth-child(1).active ~ .indicator{
   transform: translateX(calc(70px * 0));
