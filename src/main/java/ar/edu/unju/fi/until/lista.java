@@ -11,6 +11,10 @@ import ar.edu.unju.fi.model.persona;
 public class lista {
   private List<persona> lista = new ArrayList<>();
   
+  public lista(){
+    
+  }
+
   public lista(List<persona> lista) {
     this.lista = lista;
   }

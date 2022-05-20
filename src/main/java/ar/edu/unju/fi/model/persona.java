@@ -1,34 +1,26 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class persona {
-  private String Nombre;
-  private String Apellido;
-  private String email;
+  private String usuario;
   private String contraseña;
-  public persona(String nombre, String apellido, String email, String contraseña) {
-    Nombre = nombre;
-    Apellido = apellido;
-    this.email = email;
+  public persona(){
+    
+  }
+  public persona(String usuario, String contraseña) {
+    this.usuario = usuario;
     this.contraseña = contraseña;
   }
-  public void setNombre(String nombre) {
-    Nombre = nombre;
+  public String getUsuario() {
+    return usuario;
   }
-  public String getNombre() {
-    return Nombre;
+
+  public void setUsuario(String usuario) {
+    this.usuario = usuario;
   }
-  public void setApellido(String apellido) {
-    Apellido = apellido;
-  }
-  public String getApellido() {
-    return Apellido;
-  }
-  public void setEmail(String email) {
-    this.email = email;
-  }
-  public String getEmail() {
-    return email;
-  }
+
   public void setContraseña(String contraseña) {
     this.contraseña = contraseña;
   }
