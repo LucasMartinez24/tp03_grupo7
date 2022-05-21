@@ -3,13 +3,13 @@ package ar.edu.unju.fi.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class persona {
+public class Persona {
   private String usuario;
   private String contraseña;
-  public persona(){
+  public Persona(){
     
   }
-  public persona(String usuario, String contraseña) {
+  public Persona(String usuario, String contraseña) {
     this.usuario = usuario;
     this.contraseña = contraseña;
   }

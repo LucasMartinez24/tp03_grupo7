@@ -5,25 +5,25 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.persona;
+import ar.edu.unju.fi.model.Persona;
 
 @Component
-public class lista {
-  private List<persona> lista = new ArrayList<>();
+public class Lista {
+  private List<Persona> lista = new ArrayList<>();
   
-  public lista(){
+  public Lista(){
     
   }
 
-  public lista(List<persona> lista) {
+  public Lista(List<Persona> lista) {
     this.lista = lista;
   }
 
-  public List<persona> getLista() {
+  public List<Persona> getLista() {
     return lista;
   }
 
-  public void setLista(List<persona> lista) {
+  public void setLista(List<Persona> lista) {
     this.lista = lista;
   }
 }
