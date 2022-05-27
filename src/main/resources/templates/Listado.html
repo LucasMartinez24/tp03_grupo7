@@ -29,7 +29,7 @@
               </a>
             </li>
             <li class="list active">
-              <a href="#">
+              <a href="/formulario">
                 <span class="icon">
                   <ion-icon name="help-outline"></ion-icon>
                 </span>
@@ -37,7 +37,7 @@
               </a>
             </li>
             <li class="list">
-              <a href="/lista">
+              <a href="#">
                 <span class="icon">
                   <ion-icon name="school-outline"></ion-icon>
                 </span>
@@ -57,37 +57,24 @@
       </div>
     </nav>
   </header>
-  <form th:object="${usuario}" th:action="@{/formulario}" method="post">
-    <div class="container">
-      <div class="content">
-          <div class="login__inputs">
-              <p>
-                  <label> Usuario </label>
-                  <input th:field="*{usuario}" type="text" placeholder="Ingrese su usuario">
-              </p>
-              <p>
-                <label>E-mail</label>
-                <input type="email" th:field="*{email}" placeholder="Ingrese email: ej@correo.com" required>
-              </p>
-              <p>
-                <label> DNI </label>
-                <input type="number" th:field="*{dni}" placeholder="Ingrese DNI" >
-                <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
-              </p>
-              <p>
-                  <label> Contraseña </label>
-                  <input type="password" placeholder="Ingrese su contraseña">
-              </p>
-              <p>
-                  <button type="submit"> Ingresar </button>
-              </p>
-          </div>
-          <div class="login__img">
-              
-          </div>
-      </div>
-    </div>
-  </form>
+  <section id="main-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Usuario</th><th>E-mail</th><th>DNI</th><th>Botones</th>
+          </tr>
+        </thead>
+
+        <tr th:each="u : ${listaUsuario}">
+          <td th:text="${u.usuario}"></td>
+          <td th:text="${u.email}"></td>
+          <td th:text="${u.dni}"></td>
+          <td><button><a th:href="@{'/editarUsuario/' + ${u.dni}}">editar</a></button>
+          <button><a th:href="@{'/eliminarUsuario/' + ${u.dni}}">eliminar</a></button>
+          </td>
+        </tr>
+      </table>
+  </section>
   <footer>
     
   </footer>
