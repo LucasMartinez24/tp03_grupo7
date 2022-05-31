@@ -57,13 +57,17 @@
       </div>
     </nav>
   </header>
+  <div th:if="${formUsuarioErrorMessage}" >
+    <label th:text="${formUsuarioErrorMessage}"></label>  
+    <button type="button"> X</button>
+  </div>
   <form th:object="${usuario}" th:action="@{/formulario}" method="post">
     <div class="container">
       <div class="content">
           <div class="login__inputs">
               <p>
                   <label> Usuario </label>
-                  <input th:field="*{usuario}" type="text" placeholder="Ingrese su usuario">
+                  <input th:field="*{usuario}" type="text" placeholder="Ingrese su usuario" required>
               </p>
               <p>
                 <label>E-mail</label>
@@ -71,7 +75,7 @@
               </p>
               <p>
                 <label> DNI </label>
-                <input type="number" th:field="*{dni}" placeholder="Ingrese DNI" >
+                <input type="number" th:field="*{dni}" placeholder="Ingrese DNI" required>
                 <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
               </p>
               <p>
@@ -79,7 +83,7 @@
                   <input type="password" placeholder="Ingrese su contraseña">
               </p>
               <p>
-                  <button type="submit"> Ingresar </button>
+                  <button type="submit" th:value="${band}? 'modificar' : 'registrar' "> Registrar </button>
               </p>
           </div>
           <div class="login__img">

@@ -58,21 +58,27 @@
     </nav>
   </header>
   <section id="main-container">
+    <div class="alert-danger text-center" th:if="${formUsuarioErrorMessage}" th:text="${formUsuarioErrorMessage}">Name Error</div>
       <table>
         <thead>
           <tr>
             <th>Usuario</th><th>E-mail</th><th>DNI</th><th>Botones</th>
           </tr>
         </thead>
-
-        <tr th:each="u : ${listaUsuario}">
-          <td th:text="${u.usuario}"></td>
-          <td th:text="${u.email}"></td>
-          <td th:text="${u.dni}"></td>
-          <td><button><a th:href="@{'/editarUsuario/' + ${u.dni}}">editar</a></button>
-          <button><a th:href="@{'/eliminarUsuario/' + ${u.dni}}">eliminar</a></button>
-          </td>
-        </tr>
+        <tbody>
+          <tr th:if="${listaUsuario.empty}">
+            <td>No hay usuarios cargados</td>
+          </tr>
+          <tr th:each="u : ${listaUsuario}">
+            <td th:text="${u.usuario}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.dni}"></td>
+            <td><button><a th:href="@{'/editarUsuario/' + ${u.dni}}">editar</a></button>
+            <button><a th:href="@{'/eliminarUsuario/' + ${u.dni}}">eliminar</a></button>
+            </td>
+          </tr>
+        </tbody>
+        
       </table>
   </section>
   <footer>
