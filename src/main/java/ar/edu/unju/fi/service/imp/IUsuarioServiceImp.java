@@ -38,6 +38,7 @@ public class IUsuarioServiceImp implements IUsuarioService{
 
 	@Override
 	public void modificarUsuario(Persona usuario) {
+		usuario.setEstado(true);
 		LUCAS.error("dni");
 		for (int i = 0; i < list.getLista().size(); i++) {			
 			if (list.getLista().get(i).getDni().equals(usuario.getDni())) {
@@ -68,7 +69,7 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	public Persona buscarUsuario(Long id) {
 		Persona usuarioEncontrado = new Persona();
 		for (int i = 0; i < list.getLista().size(); i++) {
-			
+			LUCAS.fatal("usuario encontrado");
 			if (list.getLista().get(i).getDni().equals(id)) {
 				usuarioEncontrado = list.getLista().get(i);		
 			}            

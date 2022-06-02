@@ -70,7 +70,7 @@ public class UsuarioController {
     usuarioencontrado=usuarioService.buscarUsuario(dni);    
     ModelAndView encontrado = new ModelAndView("formulario");
     encontrado.addObject("usuario", usuarioencontrado);
-    LUCAS.fatal("Saliendo del metodo");
+    LUCAS.fatal("Saliendo del metodo encontrado");
     encontrado.addObject("editMode","true");
     return encontrado;
   }

@@ -61,7 +61,7 @@
     <label th:text="${formUsuarioErrorMessage}"></label>  
     <button type="button">X</button>
   </div>
-  <form th:object="${usuario}" th:action="${editMode}?@{/editarUsuario}:@{/formulario}" method="post">
+  <form th:object="${usuario}" th:action="${editMode}?@{/modificarusuario}:@{/formulario}" method="post">
     <div class="container">
       <div class="content">
           <div class="login__inputs">
