@@ -38,6 +38,7 @@ public class IUsuarioServiceImp implements IUsuarioService{
 
 	@Override
 	public void modificarUsuario(Persona usuario) {
+		LUCAS.error("dni");
 		for (int i = 0; i < list.getLista().size(); i++) {			
 			if (list.getLista().get(i).getDni().equals(usuario.getDni())) {
 				LUCAS.error("encontrando");

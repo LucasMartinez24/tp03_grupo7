@@ -35,7 +35,7 @@ public class UsuarioController {
     ModelAndView vista= new ModelAndView();
     vista.addObject("formulario");
     vista.addObject("usuario", listaPersona);
-    vista.addObject("band","false");
+    vista.addObject("editMode","false");
     return vista;
   }
   @PostMapping("/formulario")
@@ -71,7 +71,7 @@ public class UsuarioController {
     ModelAndView encontrado = new ModelAndView("formulario");
     encontrado.addObject("usuario", usuarioencontrado);
     LUCAS.fatal("Saliendo del metodo");
-    encontrado.addObject("band","true");
+    encontrado.addObject("editMode","true");
     return encontrado;
   }
   @PostMapping("/modificarusuario")

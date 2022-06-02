@@ -83,7 +83,7 @@
                   <input type="password" placeholder="Ingrese su contraseña">
               </p>
               <p>
-                  <button type="submit" th:value="${band}? 'modificar' : 'registrar' "> Registrar </button>
+                  <button type="submit"> <span th:text="${editMode}?'Modificar':'Guardar'"></span> </button>
               </p>
           </div>
           <div class="login__img">
