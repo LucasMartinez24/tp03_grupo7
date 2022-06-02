@@ -59,9 +59,9 @@
   </header>
   <div th:if="${formUsuarioErrorMessage}" >
     <label th:text="${formUsuarioErrorMessage}"></label>  
-    <button type="button"> X</button>
+    <button type="button">X</button>
   </div>
-  <form th:object="${usuario}" th:action="@{/formulario}" method="post">
+  <form th:object="${usuario}" th:action="${editMode}?@{/editarUsuario}:@{/formulario}" method="post">
     <div class="container">
       <div class="content">
           <div class="login__inputs">
@@ -96,6 +96,7 @@
     
   </footer>
 <script th:src="@{js/main.js}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

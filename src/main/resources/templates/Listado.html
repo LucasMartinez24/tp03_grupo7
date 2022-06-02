@@ -58,7 +58,7 @@
     </nav>
   </header>
   <section id="main-container">
-    <div class="alert-danger text-center" th:if="${formUsuarioErrorMessage}" th:text="${formUsuarioErrorMessage}">Name Error</div>
+    <div th:if="${formUsuarioErrorMessage}" th:text="${formUsuarioErrorMessage}">Name Error</div>
       <table>
         <thead>
           <tr>
@@ -74,18 +74,17 @@
             <td th:text="${u.email}"></td>
             <td th:text="${u.dni}"></td>
             <td><button><a th:href="@{'/editarUsuario/' + ${u.dni}}">editar</a></button>
-            <button><a th:href="@{'/eliminarUsuario/' + ${u.dni}}">eliminar</a></button>
+            <button><a th:onclick="'javascript:confirmarEliminar(\''+${u.dni}+'\');'">eliminar</a></button>
             </td>
           </tr>
         </tbody>
         
       </table>
   </section>
+  
   <footer>
     
   </footer>
 <script th:src="@{js/main.js}"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
 </html>

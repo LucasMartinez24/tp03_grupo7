@@ -55,41 +55,42 @@ public class UsuarioController {
     }
     model.addAttribute("formUsuarioErrorMessage", "Usuario guardado correctamente");
 		model.addAttribute("unUsuario", user);			
-		return "usuarios";
+		return "formulario";
   }
   @GetMapping("/lista")
   public ModelAndView getlista(){
     ModelAndView vista = new ModelAndView("Listado");
-    vista.addObject("listaUsuario", list.getLista());
+    vista.addObject("listaUsuario", usuarioService.listarUsuarios());
+    LUCAS.info("Ingresando al metodo");
     return vista;
   }
   @GetMapping("/editarUsuario/{dni}")
-  public ModelAndView edituser(@PathVariable(name="dni") Long dni){
+  public ModelAndView edituser(@PathVariable(name="dni") Long dni) throws Exception{
     Persona usuarioencontrado = new Persona();
-    for(int i=0;i<list.getLista().size();i++){
-      if(list.getLista().get(i).getDni().equals(dni)){
-        usuarioencontrado = list.getLista().get(i);
-      }
-    }
-    LUCAS.fatal("Error de entrada"+usuarioencontrado.getDni());
+    usuarioencontrado=usuarioService.buscarUsuario(dni);    
     ModelAndView encontrado = new ModelAndView("formulario");
     encontrado.addObject("usuario", usuarioencontrado);
+    LUCAS.fatal("Saliendo del metodo");
     encontrado.addObject("band","true");
     return encontrado;
   }
   @PostMapping("/modificarusuario")
-  public String modUser(@Valid @ModelAttribute("usuario") Persona user, BindingResult resultado,Model model){
-    LUCAS.info("Ingresando al metodo guardar usuario: "+ user.getDni());
-    if (resultado.hasErrors()) {
-      LUCAS.fatal("Error de validacion");
-      model.addAttribute("usuario", user);
-    }
-    for (int i=0;i<list.getLista().size();i++) {
-      if (list.getLista().get(i).getDni().equals(user.getDni())) {
-        list.getLista().set(i, user);
-      } 
-    }
-    LUCAS.error("Tamaño del listado: "+ list.getLista().size());
-    return "redirect:/Listado";
+  public ModelAndView modUser(@ModelAttribute("usuario") Persona user){
+    usuarioService.modificarUsuario(user);
+    ModelAndView vista = new ModelAndView("Listado");
+    vista.addObject("listaUsuario", usuarioService.listarUsuarios());
+    vista.addObject("formUsuarioErrorMessage","Usuario Guardado Correctamente");
+    return vista;
   }
+  @GetMapping("/eliminarUsuario/{id}")
+	public String eliminar(@PathVariable Long id, Model model) {	
+		try {
+		usuarioService.eliminarUsuario(id);
+		}catch(Exception e) {
+			LUCAS.error("encontrando");
+			model.addAttribute("formUsuarioErrorMessage", e.getMessage());
+			return "redirect:/formulario";			
+		}
+		return "redirect:/lista";
+	}
 }
