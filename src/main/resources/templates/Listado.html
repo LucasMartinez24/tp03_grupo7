@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link th:href="@{/css/form.css}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/listado.css}">
     <title> Login </title>
 </head>
 <body>
@@ -74,17 +75,30 @@
             <td th:text="${u.email}"></td>
             <td th:text="${u.dni}"></td>
             <td><button><a th:href="@{'/editarUsuario/' + ${u.dni}}">editar</a></button>
-            <button><a th:onclick="'javascript:confirmarEliminar(\''+${u.dni}+'\');'">eliminar</a></button>
+            <button class="cta"><a th:onclick="'javascript:confirmarEliminar(\''+${u.dni}+'\');'">eliminar</a></button>
             </td>
           </tr>
         </tbody>
         
       </table>
   </section>
-  
+  <div class="modal-container" id="modalEliminar">
+    <div class="modal modal-close">
+      <p class="close">X</p>
+      <div class="modal-textos">
+        <h2 class="modal-title" id="eliminarModalTitulo">Confirmar Eliminar</h2>
+        <h3>¿Seguro quiere eliminar este Usuario?</h3>
+        <form>										
+          <input type="text" id="identificadorDeUsuario" name="userIdHiddenInput"/>
+        </form>
+        <button type="button" th:onclick="eliminarUsuario()" class="modal-button" data-bs-dismiss="modal">Si, Borrar</button>
+      </div>
+    </div>
+  </div>
   <footer>
     
   </footer>
 <script th:src="@{js/main.js}"></script>
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.6.0/jquery.min.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </html>
