@@ -1,22 +1,44 @@
 package ar.edu.unju.fi.model;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
 
+
+@Entity
 @Component
+@Table(name = "usuarios")
 public class Persona {
-  private String usuario;
-  private String email;
-  @NotEmpty
-  private String contraseña;
-  private Boolean estado;
+  @Id
   @NotEmpty
   @Min(value=1000000,message = "El DNI debe ser mayor al millon")
   @Max(value = 999999999, message = "El DNI debe ser menor a 999999999")
   private Long dni;
+  public Persona(
+      @NotEmpty @Min(value = 1000000, message = "El DNI debe ser mayor al millon") @Max(value = 999999999, message = "El DNI debe ser menor a 999999999") Long dni,
+      String usuario, String email, String contraseña, Boolean estado) {
+        super();
+    this.dni = dni;
+    this.usuario = usuario;
+    this.email = email;
+    this.contraseña = contraseña;
+    this.estado = estado;
+  }
+  @Column(name = "nombre")
+  private String usuario;
+  @Column(name = "email")
+  private String email;
+  @Column(name = "contraseña")
+  private String contraseña;
+  @Column(name = "estado")
+  private Boolean estado;
   public Persona(){
     
   }

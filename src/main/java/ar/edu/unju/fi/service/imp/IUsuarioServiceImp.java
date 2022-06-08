@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.controller.UsuarioController;
 import ar.edu.unju.fi.model.Persona;
+import ar.edu.unju.fi.repository.UsuarioRepository;
 import ar.edu.unju.fi.until.Lista;
 import ar.edu.unju.fi.service.IUsuarioService;
 
@@ -19,61 +20,46 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	
 	@Autowired
 	Lista list;
-	
+	@Autowired
+	UsuarioRepository usuarioRepository;
 	@Override
 	public void guardarUsuario(Persona usuario) {
 		usuario.setEstado(true);
-		list.getLista().add(usuario);
+		usuarioRepository.save(usuario);
 	}
 
 	@Override
-	public void eliminarUsuario(Long id) {
-		
-		for (int i = 0; i < list.getLista().size(); i++) {			
-			if (list.getLista().get(i).getDni().equals(id)) {				
-				list.getLista().get(i).setEstado(false);		
-			}            
-        }		
+	public void eliminarUsuario(Long id) throws Exception{
+		Persona auxiliar =new Persona();
+		auxiliar=buscarUsuario(id);
+		usuarioRepository.delete(auxiliar);	
 	}
 
 	@Override
 	public void modificarUsuario(Persona usuario) {
-		usuario.setEstado(true);
-		LUCAS.error("dni");
-		for (int i = 0; i < list.getLista().size(); i++) {			
-			if (list.getLista().get(i).getDni().equals(usuario.getDni())) {
-				LUCAS.error("encontrando");
-				list.getLista().set(i, usuario);			
-			}            
-        }
+		usuarioRepository.save(usuario);
 	}
 
 	@Override
 	public List<Persona> listarUsuarios() {
+		LUCAS.info("ingresando al metodo mostrar");
 		List<Persona> auxiliar = new ArrayList<>();
-		LUCAS.info("ingresando al metodo");
-		for (int i = 0; i < list.getLista().size(); i++) {
-			LUCAS.error("recorriendo "+list.getLista().get(i).getDni());
-			
-			if (list.getLista().get(i).getEstado()==true) {
-				//GUSTAVO.error("encontrando: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-				auxiliar.add(list.getLista().get(i));		
+		List<Persona> auxiliar2 = new ArrayList<>();
+		auxiliar=(List<Persona>) usuarioRepository.findAll();
+		for (int i = 0; i < auxiliar.size(); i++) {			
+			if (auxiliar.get(i).getEstado().equals(true)) {		
+				auxiliar2.add(auxiliar.get(i));		
 			}            
-        }
-		return auxiliar;
+    }		
+		return auxiliar2;
 	}
 
 	
 
 	@Override
-	public Persona buscarUsuario(Long id) {
+	public Persona buscarUsuario(Long id) throws Exception {
 		Persona usuarioEncontrado = new Persona();
-		for (int i = 0; i < list.getLista().size(); i++) {
-			LUCAS.fatal("usuario encontrado");
-			if (list.getLista().get(i).getDni().equals(id)) {
-				usuarioEncontrado = list.getLista().get(i);		
-			}            
-        }
+		usuarioEncontrado=usuarioRepository.findById(id).orElseThrow(()->new Exception("usuario no encontrado"));
 		return usuarioEncontrado;
 	}
 }

@@ -10,58 +10,13 @@
 </head>
 <body>
   <header>
-    <nav>
-      <a href="#" class="logo"><img th:src="@{/img/Logo.png}" alt=""></a>
-      <div class="nave">
-        <ul>
-            <li class="list">
-              <a href="/home"><span class="icon">
-                <ion-icon name="home-outline"></ion-icon>
-              </span>
-              <span class="text">Home</span></a>
-            </li>
-            <li class="list">
-              <a href="#">
-                <span class="icon">
-                  <ion-icon name="cart-outline"></ion-icon>
-                </span>
-                <span class="text">Products</span>
-              </a>
-            </li>
-            <li class="list active">
-              <a href="#">
-                <span class="icon">
-                  <ion-icon name="help-outline"></ion-icon>
-                </span>
-                <span class="text">Form</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="/lista">
-                <span class="icon">
-                  <ion-icon name="school-outline"></ion-icon>
-                </span>
-                <span class="text">List</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#">
-                <span class="icon">
-                  <ion-icon name="people-circle-outline"></ion-icon>
-                </span>
-                <span class="text">Contact</span>
-              </a>
-            </li>
-            <div class="indicator"></div>
-        </ul>
-      </div>
-    </nav>
+    <div th:insert="/layouts/nav :: nav"></div>
   </header>
   <div th:if="${formUsuarioErrorMessage}" >
     <label th:text="${formUsuarioErrorMessage}"></label>  
     <button type="button">X</button>
   </div>
-  <form th:object="${usuario}" th:action="${editMode}?@{/modificarusuario}:@{/formulario}" method="post">
+  <form th:object="${usuario1}" th:action="${editMode}?@{/modificarusuario}:@{/formulario}" method="post">
     <div class="container">
       <div class="content">
           <div class="login__inputs">

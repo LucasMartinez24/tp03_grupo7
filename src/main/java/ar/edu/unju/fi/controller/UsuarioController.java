@@ -25,8 +25,10 @@ public class UsuarioController {
 
   @Autowired
   Persona listaPersona;
+  
   @Autowired
   Lista list;
+  
   @Autowired
   IUsuarioService usuarioService;
 
@@ -34,15 +36,15 @@ public class UsuarioController {
   public ModelAndView addUsuario(){
     ModelAndView vista= new ModelAndView();
     vista.addObject("formulario");
-    vista.addObject("usuario", listaPersona);
+    vista.addObject("usuario1", listaPersona);
     vista.addObject("editMode",false);
     return vista;
   }
   @PostMapping("/formulario")
-  public String saveUser(@Valid @ModelAttribute("usuario") Persona user, BindingResult resultado, Model model){
+  public String saveUser(@Valid @ModelAttribute("usuario1") Persona user, BindingResult resultado, Model model){
     if (resultado.hasErrors()) {
       LUCAS.fatal("Error de validación");
-      model.addAttribute("usuario", user);
+      model.addAttribute("usuario1", user);
       return "formulario";
     }
     try {
@@ -69,13 +71,13 @@ public class UsuarioController {
     Persona usuarioencontrado = new Persona();
     usuarioencontrado=usuarioService.buscarUsuario(dni);    
     ModelAndView encontrado = new ModelAndView("formulario");
-    encontrado.addObject("usuario", usuarioencontrado);
+    encontrado.addObject("usuario1", usuarioencontrado);
     LUCAS.fatal("Saliendo del metodo encontrado");
     encontrado.addObject("editMode",true);
     return encontrado;
   }
   @PostMapping("/modificarusuario")
-  public ModelAndView modUser(@ModelAttribute("usuario") Persona user){
+  public ModelAndView modUser(@ModelAttribute("usuario1") Persona user){
     usuarioService.modificarUsuario(user);
     ModelAndView vista = new ModelAndView("Listado");
     vista.addObject("listaUsuario", usuarioService.listarUsuarios());
