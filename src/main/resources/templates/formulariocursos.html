@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link th:href="@{/css/formcur.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title> Login </title>
+</head>
+<body>
+  <header>
+    <div th:insert="/layouts/nav :: nav"></div>
+  </header>
+  <div th:if="${formUsuarioErrorMessage}" >
+    <label th:text="${formUsuarioErrorMessage}"></label>  
+    <button type="button">X</button>
+  </div>
+  <form th:object="${cursos1}" th:action="${editMode}?@{/modificarcursos}:@{/formulariocursos}" method="post">
+    <div class="container">
+      <div class="content">
+          <div class="login__inputs">
+              <p>
+                  <label>Curso</label>
+                  <input th:field="*{nombre}" type="text" placeholder="Ingrese nombre del curso" required>
+              </p>
+              <p>
+                <label>Docente</label>
+                <input type="text" th:field="*{docente}" placeholder="ingrese el nombre del docente" required>
+              </p>
+              <p>
+                <label>Duracion</label>
+                <input type="number" th:field="*{duracion}" placeholder="Ingrese una duracion">
+              </p>
+              <p>
+                  <label>Descripcion</label>
+                  <input type="text" th:field="*{descripcion}" placeholder="Ingrese una descripcion">
+              </p>
+              <p>
+                <label>Fecha de inicio</label>
+                <input type="date" th:field="*{fechaInicio}" placeholder="Ingrese una fecha de inicio">
+              </p>
+              <p>
+                <label>Fecha de finalizacion</label>
+                <input type="date" th:field="*{fechaFinal}" placeholder="Ingrese una fecha de finalizacion">
+              </p>
+              <p>
+                <label>Cupo</label>
+                <input type="number" th:field="*{cupo}" placeholder="Ingrese un cupo maximo">
+              </p>
+              <p>
+                <label>Costo</label>
+                <input type="number" th:field="*{costo}" placeholder="Ingrese el costo">
+              </p>
+              <p>
+                  <button type="submit"> <span th:text="${editMode}?'Modificar':'Guardar'"></span> </button>
+              </p>
+          </div>
+          <div class="login__img">
+              
+          </div>
+      </div>
+    </div>
+  </form>
+  <footer>
+    
+  </footer>
+<script th:src="@{js/main.js}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

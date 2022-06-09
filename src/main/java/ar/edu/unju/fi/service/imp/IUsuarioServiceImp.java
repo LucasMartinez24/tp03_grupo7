@@ -24,7 +24,6 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	UsuarioRepository usuarioRepository;
 	@Override
 	public void guardarUsuario(Persona usuario) {
-		usuario.setEstado(true);
 		usuarioRepository.save(usuario);
 	}
 
@@ -44,14 +43,8 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	public List<Persona> listarUsuarios() {
 		LUCAS.info("ingresando al metodo mostrar");
 		List<Persona> auxiliar = new ArrayList<>();
-		List<Persona> auxiliar2 = new ArrayList<>();
-		auxiliar=(List<Persona>) usuarioRepository.findAll();
-		for (int i = 0; i < auxiliar.size(); i++) {			
-			if (auxiliar.get(i).getEstado().equals(true)) {		
-				auxiliar2.add(auxiliar.get(i));		
-			}            
-    }		
-		return auxiliar2;
+		auxiliar=(List<Persona>) usuarioRepository.findAll();	
+		return auxiliar;
 	}
 
 	
