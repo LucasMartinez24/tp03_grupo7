@@ -6,12 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
+@Table(name = "Cursos")
 public class Curso {
   private String nombre;
   @Id
@@ -26,7 +28,6 @@ public class Curso {
   private LocalDate fechaFinal;
   private Integer cupo;
   private Double costo;
-  private Integer valoracion;
   private Boolean estado;
   public Curso() {
     
@@ -85,16 +86,24 @@ public class Curso {
   public void setCosto(Double costo) {
     this.costo = costo;
   }
-  public Integer getValoracion() {
-    return valoracion;
-  }
-  public void setValoracion(Integer valoracion) {
-    this.valoracion = valoracion;
-  }
+
   public Boolean getEstado() {
     return estado;
   }
   public void setEstado(Boolean estado) {
+    this.estado = estado;
+  }
+  public Curso(String nombre, Long idCurso, String docente, Integer duracion, String descripcion, LocalDate fechaInicio,
+      LocalDate fechaFinal, Integer cupo, Double costo, Boolean estado) {
+    this.nombre = nombre;
+    this.idCurso = idCurso;
+    this.docente = docente;
+    this.duracion = duracion;
+    this.descripcion = descripcion;
+    this.fechaInicio = fechaInicio;
+    this.fechaFinal = fechaFinal;
+    this.cupo = cupo;
+    this.costo = costo;
     this.estado = estado;
   }
 }
