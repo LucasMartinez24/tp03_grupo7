@@ -17,20 +17,20 @@
       <table>
         <thead>
           <tr>
-            <th>Usuario</th><th>E-mail</th><th>DNI</th><th>Botones</th>
+            <th>Nombre Curso</th><th>Id Curso</th><th>Costo</th><th>Botones</th>
           </tr>
         </thead>
         <tbody>
           <tr th:if="${listaCursos.empty}">
-            <td>No hay usuarios cargados</td>
+            <td>No hay cursos cargados</td>
           </tr>
           <tr th:each="u : ${listaCursos}">
             <td th:text="${u.nombre}"></td>
-            <td th:text="${u.idCurso}"></td>
+            <td th:text="${u.id}"></td>
             <td th:text="${u.costo}"></td>
             <td>
-              <button><a th:href="@{'/editarCurso/' + ${u.idCurso}}">editar</a></button>
-              <button><a class="hero_cta"th:onclick="'confirmarEliminar(\''+${u.idCurso}+'\');'">eliminar</a></button>
+              <button><a th:href="@{'/editarCurso/' + ${u.id}}">editar</a></button>
+              <button><a class="hero_cta"th:onclick="'confirmarEliminar(\''+${u.id}+'\');'">eliminar</a></button>
             </td>
           </tr>
         </tbody>

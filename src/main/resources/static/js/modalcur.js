@@ -20,7 +20,7 @@ function confirmarEliminar(id) {
 	$("#identificadorDeCurso").val(id);
 }
 
-function eliminarUsuario() {
+function eliminarCurso() {
 	var id = $("#identificadorDeCurso").val();
 	window.location = "/eliminarcurso/" + id;
 }

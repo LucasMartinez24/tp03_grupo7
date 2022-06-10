@@ -16,13 +16,14 @@
     <label th:text="${formUsuarioErrorMessage}"></label>  
     <button type="button">X</button>
   </div>
-  <form th:object="${cursos1}" th:action="${editMode}?@{/modificarcursos}:@{/formulariocursos}" method="post">
+  <form th:object="${curso}" th:action="${editMode}?@{/modificarcursos}:@{/formulariocursos}" method="post">
+    <input type="hidden" th:field="*{id}">
     <div class="container">
       <div class="content">
           <div class="login__inputs">
               <p>
                   <label>Curso</label>
-                  <input th:field="*{nombre}" type="text" placeholder="Ingrese nombre del curso" required>
+                  <input th:field="*{nombre}" type="text" placeholder="Ingrese nombre" required>
               </p>
               <p>
                 <label>Docente</label>

@@ -23,7 +23,7 @@ public class CursoController {
   private static final Log LUCAS=LogFactory.getLog(UsuarioController.class);
 
   @Autowired
-  Curso listacurso;
+  Curso nuevoCurso;
   
   @Autowired
   Listacur list;
@@ -34,27 +34,28 @@ public class CursoController {
   @GetMapping("/formulariocursos")
   public ModelAndView addCursos(){
     ModelAndView vista= new ModelAndView("formulariocursos");
-    vista.addObject("cursos1", listacurso);
+    vista.addObject("curso", nuevoCurso);
     vista.addObject("editMode",false);
     return vista;
   }
   @PostMapping("/formulariocursos")
-  public String saveUser(@Valid @ModelAttribute("cursos1") Curso curso, BindingResult resultado, Model model){
+  public String saveUser(@Valid @ModelAttribute("curso") Curso curso, BindingResult resultado, Model model){
+    LUCAS.info(curso.getDocente() + resultado.getFieldError());
     if (resultado.hasErrors()) {
       LUCAS.fatal("Error de validación en guardar curso");
-      model.addAttribute("curso1", curso);
+      model.addAttribute("curso", curso);
       return "formulariocursos";
     }
     try {
       cursoService.guardarCurso(curso);
     } catch (Exception e) {
       model.addAttribute("formUsuarioErrorMessage", e.getMessage());
-			model.addAttribute("uncurso", curso);
+			model.addAttribute("unCurso", curso);
 			LUCAS.error("saliendo del metodo");
 			return "formulariocursos";	
     }
     model.addAttribute("formUsuarioErrorMessage", "curso guardado correctamente");
-		model.addAttribute("uncurso", curso);			
+		model.addAttribute("unCurso", curso);			
 		return "formulariocursos";
   }
   @GetMapping("/listacursos")
@@ -64,18 +65,18 @@ public class CursoController {
     LUCAS.info("Ingresando al metodo listar cursos");
     return vista;
   }
-  @GetMapping("/editarCurso/{idCurso}")
-  public ModelAndView edituser(@PathVariable(name="idCurso") Long id) throws Exception{
+  @GetMapping("/editarCurso/{id}")
+  public ModelAndView edituser(@PathVariable(name="id") Long id) throws Exception{
     Curso cursoencontrado = new Curso();
     cursoencontrado=cursoService.buscarCurso(id);    
     ModelAndView encontrado = new ModelAndView("formulariocursos");
-    encontrado.addObject("cursos1", cursoencontrado);
+    encontrado.addObject("curso", cursoencontrado);
     LUCAS.fatal("Saliendo del metodo encontrado curso");
     encontrado.addObject("editMode",true);
     return encontrado;
   }
   @PostMapping("/modificarcursos")
-  public ModelAndView modUser(@ModelAttribute("cursos1") Curso curso){
+  public ModelAndView modUser(@ModelAttribute("curso") Curso curso){
     cursoService.modificarCurso(curso);;
     ModelAndView vista = new ModelAndView("Listadocur");
     vista.addObject("listaCursos", cursoService.listarCursos());

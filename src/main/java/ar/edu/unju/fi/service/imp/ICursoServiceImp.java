@@ -25,7 +25,6 @@ public class ICursoServiceImp implements ICursoService{
 
 	@Override
 	public void guardarCurso( Curso curso){
-		curso.setEstado(true);
 		cursoRepository.save(curso);
 	}
 
@@ -45,14 +44,8 @@ public class ICursoServiceImp implements ICursoService{
 	public List<Curso> listarCursos() {
 		LUCAS.info("ingresando al metodo mostrar");
 		List<Curso> auxiliar = new ArrayList<>();
-		List<Curso> auxiliar2 = new ArrayList<>();
-		auxiliar=(List<Curso>) cursoRepository.findAll();
-		for (int i = 0; i < auxiliar.size(); i++) {			
-			if(auxiliar.get(i).getEstado()==true) {
-				auxiliar2.add(auxiliar.get(i));
-			}          
-    }		
-		return auxiliar2;
+		auxiliar=(List<Curso>) cursoRepository.findAll();	
+		return auxiliar;
 	}
 
 	

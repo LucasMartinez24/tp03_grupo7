@@ -35,7 +35,7 @@
               </p>
               <p>
                   <label> Contraseña </label>
-                  <input type="password" placeholder="Ingrese su contraseña">
+                  <input th:field="*{contraseña}" type="password" placeholder="Ingrese su contraseña">
               </p>
               <p>
                   <button type="submit"> <span th:text="${editMode}?'Modificar':'Guardar'"></span> </button>
